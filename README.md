@@ -155,7 +155,9 @@ backend-menu-management/
 
 ## API Endpoints
 
-Base URL: `http://localhost:3000`
+**Production URL**: https://backend-menu-management.vercel.app
+
+**Local Development**: `http://localhost:3000`
 
 For complete API documentation, see [api-doc.md](./api-doc.md)
 
