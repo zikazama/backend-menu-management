@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { AppModule } from '../src/app.module';
 import { ValidationPipe } from '@nestjs/common';
-import express, { Express } from 'express';
+import express, { Express, Request, Response } from 'express';
 
 let cachedApp: Express;
 
@@ -36,7 +36,16 @@ async function bootstrap() {
   return cachedApp;
 }
 
-export default async (req: any, res: any) => {
-  const app = await bootstrap();
-  return app(req, res);
+export default async (req: Request, res: Response) => {
+  try {
+    const app = await bootstrap();
+    app(req, res);
+  } catch (error) {
+    console.error('Error in serverless function:', error);
+    res.status(500).json({
+      statusCode: 500,
+      message: 'Internal server error',
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
+  }
 };

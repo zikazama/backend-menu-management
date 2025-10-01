@@ -9,7 +9,9 @@
       "Bash(npm run prisma:seed:*)",
       "Bash(vercel:*)",
       "Bash(curl:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
